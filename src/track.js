@@ -206,14 +206,22 @@ export class Track extends React.PureComponent {
 
   render() {
     const slides = renderSlides(this.props);
-    const { onMouseEnter, onMouseOver, onMouseLeave } = this.props;
+    const {
+      onMouseEnter,
+      onMouseOver,
+      onMouseLeave,
+      onTouchStart,
+      onTouchEnd
+    } = this.props;
     const mouseEvents = { onMouseEnter, onMouseOver, onMouseLeave };
+    const touchEvents = { onTouchStart, onTouchEnd };
     return (
       <div
         ref={this.handleRef}
         className="slick-track"
         style={this.props.trackStyle}
         {...mouseEvents}
+        {...touchEvents}
       >
         {slides}
       </div>

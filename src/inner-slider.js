@@ -643,12 +643,14 @@ export class InnerSlider extends React.Component {
       "targetSlide",
       "useCSS"
     ]);
-    const { pauseOnHover } = this.props;
+    const { pauseOnHover, pauseOnTouch } = this.props;
     trackProps = {
       ...trackProps,
-      onMouseEnter: pauseOnHover ? this.onTrackOver : null,
-      onMouseLeave: pauseOnHover ? this.onTrackLeave : null,
-      onMouseOver: pauseOnHover ? this.onTrackOver : null,
+      onMouseEnter: !pauseOnTouch && pauseOnHover ? this.onTrackOver : null,
+      onMouseLeave: !pauseOnTouch && pauseOnHover ? this.onTrackLeave : null,
+      onMouseOver: !pauseOnTouch && pauseOnHover ? this.onTrackOver : null,
+      onTouchStart: pauseOnTouch ? this.onTrackOver : null,
+      onTouchEnd: pauseOnTouch ? this.onTrackLeave : null,
       focusOnSelect:
         this.props.focusOnSelect && this.clickable ? this.selectHandler : null
     };
